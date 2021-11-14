@@ -3,7 +3,8 @@ const app = Vue.createApp({
     /*data: function {} */ // the full version
     data() {
         return{
-            courseGoal: 'Finish the course & learn Vue!'
+            courseGoal: 'Finish the course & learn Vue!',
+            vueLink: 'https://www.google.com/'
         };
     } // the short hand, will return only object
 }); 

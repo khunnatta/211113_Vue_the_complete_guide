@@ -49,6 +49,10 @@ header {
   border-radius: 25px;
 }
 
+#user-goal a {
+  text-decoration: none;
+}
+
 #user-goal input {
   font: inherit;
   border: 1px solid #ccc;
