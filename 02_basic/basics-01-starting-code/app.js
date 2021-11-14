@@ -1,5 +1,5 @@
 // vue will control and element by passing object through this function
-const app = vue.createApp({
+const app = Vue.createApp({
     /*data: function {} */ // the full version
     data() {
         return{
