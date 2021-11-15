@@ -22,6 +22,7 @@
       <p>{{ courseGoal }}</p> <!-- recall data from javascript file -->
       <p>{{ outputGoal() }}</p> <!-- recall function in method -->
       <p>{{ Math.random() }}</p> <!-- using function in html tag -->
+      <p v-html="courseGoalHTML"></p> <!-- using v-html to mark html tag from vueJs function -->
 
       <!-- v-bind used to set value of something (set html attribute)  -->
       <p>Learn more <a v-bind:href="vueLink">about Vue</a>.</p>
