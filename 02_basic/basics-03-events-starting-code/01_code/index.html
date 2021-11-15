@@ -26,6 +26,8 @@
       <!-- using ".right" to activate element by right click -->
       <button v-on:click.right="reduce(5)">Remove {{ numSub }}</button>
 
+      <!-- to fix the value only when start using "v-once" -->
+      <p v-once>Start Counter: {{ counter }}</p>
       <p>Result: {{ counter }}</p>
 
       <!-- add input number that will be add/substract -->

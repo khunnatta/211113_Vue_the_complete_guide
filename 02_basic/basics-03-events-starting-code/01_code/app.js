@@ -1,7 +1,7 @@
 const app = Vue.createApp({
   data() {
     return {
-      counter: 0,
+      counter: 10,
       name: "",
       confirmedName: "",
     };
@@ -24,11 +24,11 @@ const app = Vue.createApp({
     submitForm(event) {
       //using event.preventDefault() is not to submit the form, it is vanilla Js event function
       event.preventDefault();
-      alert('submit')
+      alert("submit");
     },
     confirmInput(event) {
-      this.confirmedName = event.target.value
-    }
+      this.confirmedName = event.target.value;
+    },
   },
 });
 
