@@ -18,9 +18,12 @@
     </header>
     <section id="user-goal">
       <h2>My Course Goal</h2>
-      <p>{{ courseGoal }}</p>
-      <!-- v-bind used to set value of something  -->
-      <!-- <p>Learn more <a v-bind:href="{{vueLink}}">about Vue</a>.</p> -->
+
+      <p>{{ courseGoal }}</p> <!-- recall data from javascript file -->
+      <p>{{ outputGoal() }}</p> <!-- recall function in method -->
+      <p>{{ Math.random() }}</p> <!-- using function in html tag -->
+
+      <!-- v-bind used to set value of something (set html attribute)  -->
       <p>Learn more <a v-bind:href="vueLink">about Vue</a>.</p>
     </section>
   </body>
