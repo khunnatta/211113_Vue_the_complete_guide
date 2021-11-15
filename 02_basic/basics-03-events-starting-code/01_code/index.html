@@ -22,15 +22,33 @@
       <!-- v-on:click is event listener when click on this html element -->
       <!-- =" " is use to assign the code that will run with this event -->
       <button v-on:click="add(5)">Add {{ numAdd }}</button>
-      <button v-on:click="reduce(5)">Remove {{ numSub }}</button>
+
+      <!-- using ".right" to activate element by right click -->
+      <button v-on:click.right="reduce(5)">Remove {{ numSub }}</button>
 
       <p>Result: {{ counter }}</p>
 
       <!-- add input number that will be add/substract -->
-      <input type="text" v-on:input="setNameA">
+      <input type="text" v-on:input="setNameA" />
+
       <!-- if we need to add more argument to event we need $event -->
-      <input type="text" v-on:input="setNameB($event, 'lastname')">
-      <p>Your name: {{ name }}</p>
+      <input type="text" v-on:input="setNameB($event, 'lastname')" />
+
+      <!-- we can use multiple v-on in same element -->
+      <!-- with ".enter" modifier the action will do only when push & release enter key -->
+      <input
+        type="text"
+        v-on:input="setNameB($event, 'lastname')"
+        v-on:keyup.enter="confirmInput"
+      />
+
+      <p>Your name: {{ confirmedName }}</p>
+
+      <!-- add ".prevent" modifier after v-on:submit to prevent default-->
+      <form v-on:submit.prevent="submitForm">
+        <input type="text" />
+        <button>Submit</button>
+      </form>
     </section>
   </body>
 </html>
