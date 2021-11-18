@@ -27,6 +27,7 @@
 
       <!-- Short Hand using v-model for 2 ways binding -->
       <input type="text" v-model="name" />
+      <input type="text" v-model="lastname" />
       <!-- name can be process by vue & can be input from interface -->
       <button v-on:click="resetInput">Reset Input</button>
 
@@ -37,7 +38,6 @@
 
       <!-- Using watch to change the name -->
       <p>Your Name: {{ fullname }}</p>
-      
     </section>
   </body>
 </html>

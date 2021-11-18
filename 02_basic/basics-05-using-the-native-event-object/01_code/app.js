@@ -5,6 +5,7 @@ const app = Vue.createApp({
     return {
       counter: 0,
       name: "",
+      lastname: "",
       fullname: "",
     };
   },
@@ -18,7 +19,25 @@ const app = Vue.createApp({
       if (value === "") {
         this.fullname = "";
       } else {
-        this.fullname = value + " " + "LastName";
+        this.fullname = value + " " + this.lastname;
+      }
+    },
+    lastname(value) {
+      console.log("Running in lastname");
+      if (value === "") {
+        this.fullname = this.name;
+      } else {
+        this.fullname = this.name + " " + value;
+      }
+    },
+    // set counter to zero if it over 50
+    // watch can used with timer & http request
+    counter(value) {
+      if (value > 50) {
+        const that = this;
+        setTimeout(function () {
+          that.counter = 0;
+        }, 2000);
       }
     },
   },
@@ -57,6 +76,7 @@ const app = Vue.createApp({
     */
     resetInput() {
       this.name = "";
+      this.lastname = "";
     },
   },
 });
