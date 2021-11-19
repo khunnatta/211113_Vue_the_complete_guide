@@ -17,7 +17,28 @@
       <h1>Vue Dynamic Styling</h1>
     </header>
     <section id="styling">
-      <div class="demo" :style="{borderColor: boxASelected ? 'red' : '#ccc'}" @click="boxSelected('A')"></div>
+
+      <!-- inline dynamic style -->
+      <!-- <div class="demo" :style="{borderColor: boxASelected ? 'red' : '#ccc'}" @click="boxSelected('A')"></div> -->
+      
+      <!-- bind class with boxASelected State if true use active class if not use demo class -->
+      <div
+        :class="boxASelected ? 'demo active' : 'demo'"
+        @click="boxSelected('A')"
+      ></div>
+
+      <!-- bind in vue object demo is always true, but will active class if boxASelected is true  -->
+      <div
+        :class="{demo: true, active: boxASelected}"
+        @click="boxSelected('A')"
+      ></div>
+
+      <!-- bind in vue object but demo is default so we split out to be the normal class and bind only dynamic active class -->
+      <div
+        class="demo"
+        :class="{active: boxASelected}"
+        @click="boxSelected('A')"
+      ></div>
       <div class="demo" @click="boxSelected('B')"></div>
       <div class="demo" @click="boxSelected('C')"></div>
     </section>
