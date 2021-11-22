@@ -1,46 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vue Basics</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="https://unpkg.com/vue@next" defer></script>
-    <script src="app.js" defer></script>
-  </head>
-  <body>
-    <header>
-      <h1>Vue Dynamic Styling</h1>
-    </header>
-    <section id="styling">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vue Basics</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="styles.css" />
+		<script src="https://unpkg.com/vue@next" defer></script>
+		<script src="app.js" defer></script>
+	</head>
 
-      <!-- inline dynamic style -->
-      <!-- <div class="demo" :style="{borderColor: boxASelected ? 'red' : '#ccc'}" @click="boxSelected('A')"></div> -->
-      
-      <!-- bind class with boxASelected State if true use active class if not use demo class -->
-      <div
-        :class="boxASelected ? 'demo active' : 'demo'"
-        @click="boxSelected('A')"
-      ></div>
+	<body>
+		<header>
+			<h1>Vue Dynamic Styling</h1>
+		</header>
+		<section id="styling">
+			<!-- inline dynamic style -->
+			<!-- <div class="demo" :style="{borderColor: boxASelected ? 'red' : '#ccc'}" @click="boxSelected('A')"></div> -->
 
-      <!-- bind in vue object demo is always true, but will active class if boxASelected is true  -->
-      <div
-        :class="{demo: true, active: boxASelected}"
-        @click="boxSelected('A')"
-      ></div>
+			<!-- bind class with boxASelected State if true us e active class if not use demo class -->
+			<div
+				:class="boxASelected ? 'demo active' : 'demo'"
+				@click="boxSelected('A')"
+			>
+				using ? *** not recommend
+			</div>
 
-      <!-- bind in vue object but demo is default so we split out to be the normal class and bind only dynamic active class -->
-      <div
-        class="demo"
-        :class="{active: boxASelected}"
-        @click="boxSelected('A')"
-      ></div>
-      <div class="demo" @click="boxSelected('B')"></div>
-      <div class="demo" @click="boxSelected('C')"></div>
-    </section>
-  </body>
+			<!-- bind in vue object demo is always true, but will active class if boxASelected is true  -->
+			<div
+				:class="{demo: true, active: boxASelected}"
+				@click="boxSelected('A')"
+			>
+				using only :class & toggle true demo
+			</div>
+
+			<!-- bind in vue object but demo is default so we split out to be the normal class and bind only dynamic active class -->
+			<div
+				class="demo"
+				:class="{active: boxASelected}"
+				@click="boxSelected('A')"
+			>
+				using class & :class
+			</div>
+
+			<!-- bind css style using computed method -->
+			<div 
+				class="demo" 
+				:class="boxAClasses" 
+				@click="boxSelected('A')"
+			>
+				using computed
+			</div>
+
+			<!-- bind 2 classes using array -->
+			<div 
+				:class="['demo', boxAClasses]" 
+				@click="boxSelected('A')"
+			>
+				using array
+			</div>
+
+			<div 
+				class="demo" 
+				:class="{active: true}" 
+				@click="boxSelected('B')"
+			>
+				Always True
+			</div>
+			<div class="demo" @click="boxSelected('C')"></div>
+		</section>
+	</body>
 </html>
