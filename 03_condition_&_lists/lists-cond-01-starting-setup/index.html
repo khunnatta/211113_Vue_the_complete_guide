@@ -1,29 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vue Basics</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="https://unpkg.com/vue@next" defer></script>
-    <script src="app.js" defer></script>
-  </head>
-  <body>
-    <header>
-      <h1>Vue Course Goals</h1>
-    </header>
-    <section id="user-goals">
-      <h2>My course goals</h2>
-      <input type="text" />
-      <button>Add Goal</button>
-      <p>No goals have been added yet - please start adding some!</p>
-      <ul>
-        <li>Goal</li>
-      </ul>
-    </section>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vue Basics</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css" />
+        <script src="https://unpkg.com/vue@next" defer></script>
+        <script src="app.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <h1>Vue Course Goals</h1>
+        </header>
+        <section id="user-goals">
+            <h2>My course goals</h2>
+            <input
+                type="text"
+                v-model="enteredGoalValue"
+                @keydown.enter="addGoal(enteredGoalValue)"
+            />
+            <button @click="addGoal(enteredGoalValue)">Add Goal</button>
+
+            <!-- if goals length == 0 this paragraph will be show -->
+            <!-- .length is method to find the length of array like len() inpython -->
+            <!-- inside "" of v command is to used the javascript -->
+            <!-- it can use && || within Pthe v-if "" -->
+            <p v-if="goals.length === 0 && goals.length === 0">
+                No goals have been added yet - please start adding some!
+            </p>
+            <!-- if goals.length > 0 show the ul element -->
+            <ul v-else-if="goals.length > 0">
+                <!-- vue use the recycle component so, it would be some bug with dynamic component -->
+                <!-- to avoid that we can used ":key" to lock that component with the key. -->
+                <li v-for="(goal, index) in goals" :key="goal" @click="removeGoal(index)">
+                    <p>{{ goal }} - {{ index }}</p>
+                    <!-- use @click.stop to protect the clicking event from parent -->
+                    <input type="text" @click.stop />
+                </li>
+            </ul>
+
+            <!-- v-for can iterate through JavaScript object & show key, value -->
+            <ul>
+                <li v-for="(value, key) in {name: 'Max', age: 31}">
+                    {{ key }}: {{ value }}
+                </li>
+            </ul>
+
+            <!-- v-for can itrate as a loop like python -->
+            <ul>
+                <!-- add click function to remove the list -->
+                <li v-for="num in 10">{{ num }}</li>
+            </ul>
+        </section>
+    </body>
 </html>
