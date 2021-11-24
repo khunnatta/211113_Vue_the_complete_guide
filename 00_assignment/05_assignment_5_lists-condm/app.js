@@ -1,31 +1,30 @@
 const app = Vue.createApp({
     data() {
-        return{
+        return {
             inputTask: "",
             taskLists: [],
-            show: true
+            show: true,
         };
     },
     methods: {
         addTask() {
             this.taskLists.push(this.inputTask);
-            this.inputTask = ""
+            this.inputTask = "";
             console.log(this.taskLists);
         },
         showList() {
-            this.show = !this.show
-        }
-
+            this.show = !this.show;
+        },
     },
     computed: {
         changeHideShow() {
             if (this.show === true) {
-                return "Hide List"
+                return "Hide List";
             } else {
-                return "Show List"
+                return "Show List";
             }
-        }
-    }
+        },
+    },
 });
 
-app.mount('#assignment')
+app.mount("#assignment");
