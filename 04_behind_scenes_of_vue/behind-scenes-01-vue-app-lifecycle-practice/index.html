@@ -19,6 +19,12 @@
     <section id="app">
       <h2>How Vue Works</h2>
       <input type="text" @input="saveInput">
+
+      <!-- ref is  not default HTML properties, it is vue -->
+      <!-- ref can be use with other element not only input -->
+      <!-- ref is use to bind data as a batch not real time like v-model -->
+      <!-- it is need to use with $refs in JavaScript -->
+      <input type="text" ref="userText">
       <button @click="setText">Set Text</button>
       <p>{{ message }}</p>
     </section>

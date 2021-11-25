@@ -10,7 +10,10 @@ const app = Vue.createApp({
             this.currentUserInput = event.target.value;
         },
         setText() {
-            this.message = this.currentUserInput;
+            // this.message = this.currentUserInput;
+            this.message = this.$refs.userText.value;
+            // dir is use too see all the vanilla Js command in vue
+            console.dir(this.$refs.userText);
         },
     },
 });
