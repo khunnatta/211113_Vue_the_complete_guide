@@ -3,7 +3,34 @@
         <h1>My Friends</h1>
     </header>
     <ul>
-        <friend-contact></friend-contact>
+        <!-- In html (template) part use kebab case friend(friend-contact) -->
+        <!-- friend-contact is Child of App -->
+        <!-- <friend-contact
+            id="manuel"
+            name="Manuel"
+            phone-number="0123 45678 90"
+            email-address="manuel@mail.com"
+            :is-favorite="true"
+        ></friend-contact>
+        <friend-contact
+            id="manuel2"
+            name="Manuel2"
+            phone-number="0123 45678 90"
+            email-address="manuel2@mail.com"
+            :is-favorite="false"
+        ></friend-contact> -->
+
+        <!-- it can pass argument through custom element like this -->
+        <friend-contact
+            v-for="friend in friends"
+            :key="friend.id"
+            :id="friend.id"
+            :name="friend.name"
+            :phone-number="friend.phone"
+            :email-address="friend.email"
+            :is-favorite="friend.isFavorite"
+            @favorite-toggle="toggleFavoriteStatus"
+        ></friend-contact>
     </ul>
 </template>
 
@@ -20,22 +47,40 @@ export default {
                     name: "Manuel",
                     phone: "0123 45678 90",
                     email: "manuel@mail.com",
+                    isFavorite: true,
                 },
                 {
                     id: "manuel2",
                     name: "Manuel2",
                     phone: "0123 45678 90",
                     email: "manuel2@mail.com",
+                    isFavorite: false,
+                },
+                {
+                    id: "manuel3",
+                    name: "Manuel3",
+                    phone: "0123 45678 90",
+                    email: "manuel3@mail.com",
+                    isFavorite: true,
                 },
             ],
         };
     },
-    methods: {},
+    methods: {
+        // "friendId" = "this.id" argument are link from this.$emit('favorite-toggle', this.id) in childcomponent
+        toggleFavoriteStatus(friendId) {
+            const identifiedFriend = this.friends.find(
+                (friend) => friend.id === friendId
+            );
+            console.log(identifiedFriend.isFavorite);
+            identifiedFriend.isFavorite = !identifiedFriend.isFavorite;
+        },
+    },
 };
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
 
 * {
     box-sizing: border-box;
