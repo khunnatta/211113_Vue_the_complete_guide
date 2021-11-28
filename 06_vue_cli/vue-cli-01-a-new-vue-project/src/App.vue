@@ -2,6 +2,7 @@
     <header>
         <h1>My Friends</h1>
     </header>
+    <new-friend @add-contact="addContact"></new-friend>
     <ul>
         <!-- In html (template) part use kebab case friend(friend-contact) -->
         <!-- friend-contact is Child of App -->
@@ -20,7 +21,8 @@
             :is-favorite="false"
         ></friend-contact> -->
 
-        <!-- it can pass argument through custom element like this -->
+        <!-- it can pass argument through custom element using "v-for" like this -->
+        <!-- when using v-for ":key" is needed -->
         <friend-contact
             v-for="friend in friends"
             :key="friend.id"
@@ -30,15 +32,18 @@
             :email-address="friend.email"
             :is-favorite="friend.isFavorite"
             @favorite-toggle="toggleFavoriteStatus"
+            @delete="deleteContact"
         ></friend-contact>
     </ul>
 </template>
 
 <script>
 import FriendContact from "./components/FriendContact.vue";
+import NewFriend from "./components/NewFriend.vue";
 // tell javascript that this is the dafault export of this file
 export default {
-    components: { FriendContact },
+    // components: is object contain the component that called to use
+    components: { FriendContact, NewFriend },
     data() {
         return {
             friends: [
@@ -74,6 +79,22 @@ export default {
             );
             console.log(identifiedFriend.isFavorite);
             identifiedFriend.isFavorite = !identifiedFriend.isFavorite;
+        },
+        addContact(name, phone, email) {
+            const newFriendContact = {
+                id: new Date().toISOString(),
+                name: name,
+                phone: phone,
+                email: email,
+                isFavorite: false,
+            };
+            // push into friends list in data part
+            this.friends.push(newFriendContact);
+        },
+        deleteContact(friendId) {
+            this.friends = this.friends.filter(
+                (friend) => friend.id !== friendId
+            ); // filter out the friendId in friends list
         },
     },
 };
@@ -112,7 +133,8 @@ header {
     list-style: none;
 }
 
-#app li {
+#app li,
+#app form {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     margin: 1rem auto;
     border-radius: 10px;
@@ -144,5 +166,19 @@ header {
     background-color: #ec3169;
     border-color: #ec3169;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
+}
+
+#app input {
+    font: inherit;
+    padding: 0.15rem;
+}
+#app label {
+    font-weight: bold;
+    margin-right: 1rem;
+    width: 7rem;
+    display: inline-block;
+}
+#app form div {
+    margin: 1rem 0;
 }
 </style>

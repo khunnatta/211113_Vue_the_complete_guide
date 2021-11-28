@@ -9,6 +9,9 @@
             <li><strong>Phone: </strong> {{ phoneNumber }}</li>
             <li><strong>e-mail: </strong> {{ emailAddress }}</li>
         </ul>
+        <button @click="deleteContact()">Delete Contact</button>
+        <!-- Remember! we can both point to method or use javascript in v-on -->
+        <button @click="this.$emit('delete', id)">Delete Contact</button>
     </li>
 </template>
 
@@ -48,18 +51,19 @@ export default {
         },
     },
 
-    // emits: ['favorite-toggle'],
+    emits: ["favorite-toggle", "delete"],
     // this part is not the emitting part, it just help define that there is emitting in this components.
-    emits: {
-        "favorite-toggle": function (id) {
-            if (id) {
-                return true;
-            } else {
-                console.warn("ID is missing");
-                return false;
-            }
-        },
-    },
+    // emits: {
+    //     "favorite-toggle": function (id) {
+    //         if (id) {
+    //             return true;
+    //         } else {
+    //             console.warn("ID is missing");
+    //             return false;
+    //         }
+    //     },
+    //     "delete-friend":
+    // },
 
     data() {
         return {
@@ -77,6 +81,9 @@ export default {
         favoriteToggle() {
             // this.favoriteFriend = !this.favoriteFriend;
             this.$emit("favorite-toggle", this.id);
+        },
+        deleteContact() {
+            this.$emit("delete", this.id);
         },
     },
 };
